@@ -12,8 +12,12 @@
             <i></i>
           </div>
           <div class="router">
-              <router-link to="/">正在热映</router-link>
-              <router-link to="/release">即将上映</router-link>
+              <keep-alive>
+                  <router-link to="/">正在热映</router-link>
+              </keep-alive>
+               <keep-alive>
+                   <router-link to="/release">即将上映</router-link>
+              </keep-alive>
           </div>
         </div>
     </div>
