@@ -1,0 +1,215 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    font: inherit;
+    font-family: arial;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    border: 0;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+img {
+    cursor: pointer;
+    background-color: #000;
+}
+
+body {
+    line-height: 1;
+}
+ol,
+ul {
+    list-style: none;
+}
+
+input,
+button,
+select {
+    outline: none;
+    border: none;
+}
+
+
+/*行内块级元素*/
+
+.inblock {
+    display: inline-block;
+}
+
+
+/*文字在一行内的省略号*/
+
+.textOverflow1 {
+    text-overflow: ellipsis;
+    /*超出部分显示...*/
+    overflow: hidden;
+    /*超出部分隐藏*/
+    white-space: nowrap;
+    /*不换行*/
+}
+
+
+/*文字在二行内的省略号*/
+
+.textOverflow2 {
+    text-overflow: ellipsis;
+    /*超出部分显示...*/
+    overflow: hidden;
+    /*超出部分隐藏*/
+    display: -webkit-box;
+    /*设置为伸缩盒子*/
+    -webkit-line-clamp: 2;
+    /*这是要显示的行数*/
+    -webkit-box-orient: vertical;
+    /*设置排版方向为从上到下*/
+}
+
+
+/*文字在三行内的省略号*/
+
+.textOverflow2 {
+    text-overflow: ellipsis;
+    /*超出部分显示...*/
+    overflow: hidden;
+    /*超出部分隐藏*/
+    display: -webkit-box;
+    /*设置为伸缩盒子*/
+    -webkit-line-clamp: 3;
+    /*这是要显示的行数*/
+    -webkit-box-orient: vertical;
+    /*设置排版方向为从上到下*/
+}
+
+
+/*浮动*/
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+
+/*清除浮动*/
+
+.clearfix::after {
+    display: block;
+    clear: both;
+    content: '';
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+}
+
+.clearfix {
+    zoom: 1;
+    /*兼容ie*/
+}
+
+
+/*水平垂直居中*/
+
+.Tcenter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

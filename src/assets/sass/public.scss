@@ -1,0 +1,18 @@
+$color_them: #E54847; // 主题颜色
+
+$color: #faaf00;
+$color1: #ffb400;
+$color2: #fa9600;
+$color_text:#f03d37;
+@mixin btn {
+    button {
+        width: 100%;
+        height: 27px;
+        line-height: 28px;
+        font-size: 12px;
+        background-color: #f03d37;
+        color: #fff;
+        border-radius: 4px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,100 @@
+@import '@/assets/sass/public.scss'; // 公共样式
+.tuan-list {
+    position: relative;
+    margin: 0 0 0 15px;
+    .tutle {
+        line-height: 45px;
+        height: 45px;
+        font-size: 15px;
+        color: #666;
+    }
+    .tuan-list-item {
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+        padding: 13px 0;
+        overflow: hidden;
+        .img {
+            display: inline-block;
+            width: 92px;
+            height: 92px;
+            float: left;
+            img {
+                width: 92px;
+                height: 92px;
+            }
+            .hot {
+                position: absolute;
+                left: 0;
+                top: 13px;
+                display: inline-block;
+                height: 18px;
+                line-height: 18px;
+                background-color: #fa5939;
+                font-size: 12px;
+                padding: 0 5px;
+                color: #fff;
+                border-bottom-right-radius: 2px;
+            }
+        }
+        .tuan-content {
+            position: relative;
+            margin: 0 15px 0 102px;
+            height: 92px;
+            overflow: hidden;
+            .title {
+                font-size: 14px;
+                line-height: 18px;
+                color: #333;
+                display: -webkit-box;
+                overflow: hidden;
+                span {
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-top: 1px;
+                    margin-right: 7px;
+                    padding: 0 4px;
+                    font-size: 10px;
+                    line-height: 15px;
+                    height: 15px;
+                    background: #f90;
+                    border-radius: 2px;
+                    color: #fff;
+                }
+            }
+            .sell-num {
+                display: inline-block;
+                position: absolute;
+                bottom: 34px;
+                right: 0;
+                line-height: 16px;
+                height: 16px;
+                font-size: 12px;
+                color: #999;
+            }
+            .price {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                .num {
+                    color: #f03d37;
+                    display: inline-block;
+                }
+                .num1 {
+                    font-size: 14px;
+                }
+                .num2 {
+                    font-size: 17px;
+                }
+            }
+            .buy-button {
+                @include btn;
+                position: absolute;
+                width: 50px;
+                height: 27px;
+                right: 0;
+                bottom: 0;
+            }
+        }
+    }
+}

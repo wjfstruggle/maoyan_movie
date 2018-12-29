@@ -1,0 +1,184 @@
+@mixin font_nm {
+    line-height: 23px;
+    font-size: 16px;
+    color: #000;
+}
+@mixin display_vr {
+    display: inline-block;
+    vertical-align: bottom;
+}
+$color_text:#f03d37;
+#movie_detail_wrapper {
+    position: relative;
+    top: -50px;
+    z-index: 10;
+    background-color: #fff;
+}
+#movie_detail {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 188px;
+    .movie-fliter {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+    }
+    .img_bg {
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        position: absolute;
+        -webkit-filter: blur(1.2rem);
+        filter: blur(1.2rem);
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: .55;
+    }
+    .movie_content {
+        display: flex;
+        padding: 19px;
+        img {
+            flex: 0 0 110px;
+            height: 150px;
+            overflow: hidden;
+        }
+        .content-wrapper {
+            color: #fff;
+            margin-left: 20px;
+            .musicName {
+                font-size: 20px;
+                margin-top: 2px;
+                font-weight: 700;
+                overflow: hidden;
+            }
+            .musicName_engish {
+                margin-top: 10px;
+                font-size: 12px;
+                opacity: .8;
+            }
+            .movie_info {
+                h3 {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #fc0;
+                    margin-top: 11px;
+                }
+                .icon_text_info {
+                    display: flex;
+                    margin-top: 10px;
+                    font-size: 12px;
+                    opacity: .8;
+                    .icon {
+                        line-height: 14px;
+                        display: inline-block;
+                        -webkit-box-flex: 0;
+                        flex: 0 0 auto;
+                        border-radius: 2px;
+                        margin-left: 3px;
+                        width: 43px;
+                        height: 14px;
+                    }
+                    .active1 {
+                        background: url('../assets/images/movie_hot/2d_max.png') no-repeat;
+                        background-size: 43px 14px;
+                    }
+                    .active2 {
+                        background: url('../assets/images/movie_hot/3d_max.png') no-repeat;
+                        background-size: 43px 14px;
+                    }
+                }
+                .movie_dur, .time {
+                    @extend .icon_text_info;
+                }
+            }
+        }
+    }
+}
+#showDays {
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    .timeLine {
+        overflow-x: scroll;
+        white-space: nowrap;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .showday,.day {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            font-size: 14px;
+            width: 115px;
+            margin-left: 5px;
+            color: #666;
+            &.isActive {
+                border-bottom: 2px solid $color_text;
+                color: $color_text;
+            }
+        }
+    }
+}
+// 上映地点信息
+#list-wrap {
+    min-height: 602px;
+    li {
+        padding: 13px 15px 13px 0;
+        margin-left: 15px;
+        position: relative;
+        overflow: hidden;
+        .name {
+            display: flex;
+            height: 23px;
+            @include font_nm;
+            h1 {
+                @include font_nm;
+            }
+            p {
+                font-size: 11px;
+                color: $color_text;
+                padding-left: 8px;
+                span {
+                    font-size: 18px;
+                }
+            }
+        }
+        .address {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #666;
+            p {
+                float: left;
+                width: 270px;
+            }
+            span {
+                display: block;
+                float: right;
+            }
+        }
+        .cardPromotionTag {
+            color: #999;
+            margin: 8px 0;
+            .icon {
+                width: 15px;
+                height: 15px;
+                background: url('../assets/images/movie_hot/ka.png') no-repeat;
+                background-size: 15px 15px;
+                margin-right: 5px;
+                @include display_vr;
+            }
+            .lijian {
+                font-size: 14px;
+                @include display_vr;
+                width: 250px;
+            }
+        }
+        .showTimes {
+            color: #999;
+        }
+}
+}

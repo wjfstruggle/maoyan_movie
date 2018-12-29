@@ -1,0 +1,129 @@
+@import '@/assets/sass/public.scss'; // 公共样式
+.mostExpected {
+    padding: 12px 0 12px 15px;
+    margin-bottom: 10px;
+    .title {
+        margin: 0 0 12px;
+        font-size: 14px;
+        color: #333;
+    }
+    .recentList {
+        overflow: scroll;
+        white-space: nowrap;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        li {
+            display: inline-block;
+            width: 85px;
+            overflow: hidden;
+            margin-right: 10px;
+            .img {
+                width: 85px;
+                height: 115px;
+                text-align: center;
+                position: relative;
+                margin-bottom: 6px;
+                img {
+                    width: 85px;
+                    height: 115px;
+                }
+                .wish {
+                    width: 100%;
+                    // height: 35px;
+                    position: absolute;
+                    z-index: 10;
+                    bottom: 5px;
+                    color: $color;
+                }
+            }
+            .nm {
+                margin: 0 0 3px;
+                font-size: 13px;
+                color: #222;
+            }
+            .comingTitle {
+                margin: 0;
+                font-size: 12px;
+                color: #999;
+            }
+        }
+    }
+}
+// cominglist
+.coming-list{
+    .comingTitle {
+        padding: 12px 15px 0;
+        margin: 0;
+        font-size: 14px;
+        color: #333;
+    }
+    .content {
+        position: relative;
+        padding-left: 15px;
+        .img {
+            width: 64px;
+            height: 90px;
+            position: relative;
+            margin-top: 12px;
+            float: left;
+            img {
+                width: 64px;
+                height: 90px;
+            }
+        }
+        .right-content {
+            width: 200px;
+            padding: 12px 14px 12px 0;
+            margin-left: 74px;
+            height: 90px;
+            max-height: 90px;
+            position: relative;
+            .nm {
+                margin-top: 5px;
+                font-size: 17px;
+                color: #333;
+                font-weight: 700;
+                padding-right: 5px;
+                flex-shrink: 1;
+                margin-bottom: 7px;
+            }
+            .wish{
+                display: flex;
+                .wish_1{
+                    color: $color;
+                    font-size: 15px;
+                    font-weight: 600;
+                }
+                .peo {
+                    font-size: 13px;
+                    color: #666;
+                }
+            }
+            .star,.showInfo {
+                font-size: 13px;
+                color: #666;
+                margin-top: 6px;
+                line-height: 15px;
+            }
+        }
+        .btn {
+            .btn1,.btn2 {
+                width: 47px;
+                height: 27px;
+                line-height: 28px;
+                text-align: center;
+                box-sizing: border-box;
+                background-color: $color;
+                color: #fff;
+                border-radius: 4px;
+                white-space: nowrap;
+                font-size: 12px;
+                cursor: pointer;
+            }
+            .btn2 {
+                background-color: #3c9fe6;
+            }
+        }
+    }
+}

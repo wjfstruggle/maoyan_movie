@@ -1,0 +1,71 @@
+@mixin fc_normal {
+    font-size: 13px;
+    color: #666;
+}
+.Hotshow {
+    padding-left: 15px;
+    li {
+        position: relative;
+        display: flex;
+        width: 100%;
+        img {
+            flex: 0 0 64px;
+            margin: 12px 10px 12px 0;
+            width: 64px;
+            height: 90px;
+            background-color: #000;
+        }
+        .movie_wrapper {
+            padding: 12px 14px 12px 0;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .movie_detail {
+            width: 200px;
+            .title_name {
+                display: flex;
+                .title {
+                    margin-top: 5px;
+                    font-size: 17px;
+                    color: #333;
+                    font-weight: 700;
+                    padding-right: 5px;
+                    margin-bottom: 7px;
+                }
+                .icon {
+                    line-height: 14px;
+                    display: inline-block;
+                    margin-top: 5px;
+                    -webkit-box-flex: 0;
+                    flex: 0 0 auto;
+                    border-radius: 2px;
+                    margin-right: 3px;
+                    color: #3c9fe6;
+                    width: 43px;
+                    height: 14px;
+                }
+                .active1 {
+                    background: url('../assets/images/movie_hot/2d_max.png') no-repeat;
+                    background-size: 43px 14px;
+                }
+                .active2 {
+                    background: url('../assets/images/movie_hot/3d_max.png') no-repeat;
+                    background-size: 43px 14px;
+                }
+            }
+            .evaluate {
+                @include fc_normal;
+                line-height: 15px;
+                span {
+                    font-weight: 700;
+                    color: #faaf00;
+                    font-size: 15px;
+                }
+            }
+            .people,.show {
+                @include fc_normal;
+                margin-top: 6px;
+                line-height: 15px;
+            }
+        }
+    }
+}

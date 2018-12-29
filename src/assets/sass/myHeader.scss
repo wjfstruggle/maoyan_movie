@@ -1,0 +1,46 @@
+.header {
+    position: relative;
+    background-color: $color_them;
+    height: 50px;
+    line-height: 50px;
+    .nav-left{
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        a {
+            height: 50px;
+            width: 22px;
+            line-height: 50px;
+            padding: 0 15px;
+            .icon-back {
+                display: inline-block;
+                width: 22.5px;
+                height: 22.5px;
+                vertical-align: middle;
+                position: relative;
+                &::before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    width: 16px;
+                    height: 16px;
+                    border-bottom: 2px solid #fff;
+                    border-left: 2px solid #fff;
+                    -webkit-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+    h1 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 auto;
+        display: inline-block;
+        color: #fff;
+        font-weight: 400;
+        font-size: 18px;
+    }
+}
