@@ -2,7 +2,7 @@
     <transition name='move'>
       <div class="Hotshow">
         <ul>
-            <li v-for="(movie, index) in movieList" :key="movie.id" @click="movie_detail(movie.id)">
+            <li v-for="(movie, index) in movieList" :key="movie.index" @click="movie_detail(movie.id)">
                 <img v-lazy="picFix(movie.img)" alt="">
                 <div class="movie_wrapper">
                     <div class="movie_detail">
@@ -34,12 +34,12 @@
 
 <script>
 // @ is an alias to /src
-import MyButton from '@/components/myButton.vue'
+import myButton from '@/components/myButton.vue'
 export default {
   name: 'Hotshow',
   created() {
-      var flag = true;
-      var that = this;
+      let flag = true;
+      let that = this;
     // http://m.maoyan.com =>  /maoyan/
     // 请求 --> 本地服务器(webpack 的devServer) --> 猫眼的服务器
     this.axios.get('/maoyan/ajax/movieOnInfoList')
@@ -121,7 +121,7 @@ export default {
      }
   },
   components: {
-      MyButton
+      myButton
     }
   }
 </script>

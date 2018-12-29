@@ -8,7 +8,7 @@
                     <ul v-infinite-scroll="loadMore"
                         infinite-scroll-disabled="loading"
                         infinite-scroll-distance="10">
-                        <li v-for="(item, index) in mostExpected" :key="index">
+                        <li v-for="(item, index) in mostExpected" :key="item.index">
                             <div class="img">
                                 <img v-lazy="picFix(item.img)" alt="">
                                 <p class="wish">{{item.wish}}人想看</p>
@@ -22,7 +22,7 @@
             <!-- 电影列表 -->
             <div class="coming-list">
                 <ul class="clearfix">
-                    <li v-for="(item,index) in timeTitle" :key="item.id">
+                    <li v-for="(item,index) in timeTitle" :key="item.index">
                         <p class="comingTitle">{{index}}</p>
                         <div v-for="(coming, index) in item" :key="coming.id">
                             <div class="content">

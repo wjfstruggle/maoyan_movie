@@ -65,9 +65,8 @@ export default {
     created(){
       // this.day_m = this.format();
       //判断是否有传进来的参数，如果有就把参数给id，如果没有就从localStorage读参数给id
-			if(this.$route.params.movieId!='' && this.$route.params.index!='' ){
+			if(this.$route.params.movieId!='' ){
 				this.movieId=this.$route.params.movieId;
-                this.index= this.$route.params.index;
 			}else{
 				this.movieId=JSON.parse(localStorage.getItem("movieId"))
 			}

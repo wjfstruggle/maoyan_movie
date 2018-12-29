@@ -106,8 +106,15 @@ export default {
             // console.log('$nextTick',this.$refs.wrapper);
         })
         // 应用场景，结合$refs属性內的对象，或者获取页面内容渲染的尺寸
-        this.cinemaId = this.$route.params.cinemaId;
-        this.movieId = this.$route.query.movieId;
+        //判断是否有传进来的参数，如果有就把参数给id，如果没有就从localStorage读参数给id
+        if (this.$route.params.cinemaId != null && this.$route.query.movieId != null) {
+            this.cinemaId = this.$route.params.cinemaId;
+            this.movieId = this.$route.query.movieId;
+        } else {
+            this.cinemaId = JSON.parse(localStorage.getItem('cinemaId'))
+            this.movieId = JSON.parse(localStorage.getItem('movieId'))
+        }
+
         this.axios.get('/maoyan/ajax/cinemaDetail', {
             params: {
                 cinemaId: this.cinemaId,
@@ -182,6 +189,14 @@ export default {
      swiper() {
        //   获取swiper实例里的数据，包含改变index的方法
        return this.$refs.mySwiper.swiper
+   },
+ },
+ watch: {
+     cinemaId(newValue) {
+         localStorage.setItem('cinemaId',JSON.stringify(newValue))
+     },
+     movieId(newValue) {
+         localStorage.setItem('movieId',JSON.stringify(newValue))
      }
  },
  components: {
