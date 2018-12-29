@@ -14,7 +14,7 @@
                                 <p class="wish">{{item.wish}}人想看</p>
                             </div>
                             <h3 class="nm">{{item.nm}}</h3>
-                            <span class="comingTitle">{{item.comingTitle}}</span>
+                            <span class="comingTitle">{{item.comingTitle.substr(0,10)}}</span>
                         </li>
                     </ul>
                 </section>

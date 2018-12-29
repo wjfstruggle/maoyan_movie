@@ -25,7 +25,7 @@
                 display: flex;
                 .title {
                     margin-top: 5px;
-                    font-size: 17px;
+                    font-size: 16px;
                     color: #333;
                     font-weight: 700;
                     padding-right: 5px;
@@ -65,6 +65,17 @@
                 @include fc_normal;
                 margin-top: 6px;
                 line-height: 15px;
+            }
+        }
+        // 媒体查询
+        @media (max-width:320px) {
+            .movie_detail {
+                width: 150px;
+                .title_name {
+                    .title {
+                        font-size: 13px;
+                    }
+                }
             }
         }
     }

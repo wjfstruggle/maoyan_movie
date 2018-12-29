@@ -64,3 +64,15 @@
     }
   }
 }
+// 媒体查询
+@media (max-width:360px) {
+    #nav {
+        .router {
+          width: 60vw;
+        }
+        a {
+          font-size: 12px;
+          width: 15vw;
+        }
+    }
+}

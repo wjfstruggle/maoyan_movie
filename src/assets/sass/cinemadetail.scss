@@ -241,6 +241,11 @@
                                 white-space: normal;
                             }
                         }
+                        @media (max-width: 320px) {
+                            .info-block {
+                                flex: 0 0 85px;
+                            }
+                        }
                         .price {
                             flex: 0 1 auto;
                             width: 100px;
@@ -288,6 +293,11 @@
                                 color: #999;
                             }
                         }
+                        @media (max-width: 360px) {
+                            .price {
+                                width: 85px;
+                            }
+                        }
                         .button-block {
                             width: 45px;
                             margin-left: 2px;
@@ -295,7 +305,7 @@
                             button {
                                 position: absolute;
                                 top: 50%;
-                                right: -8px;
+                                margin-left: 4px;
                                 -webkit-transform: translateY(-50%);
                                 transform: translateY(-50%);
                                 width: 100%;
@@ -306,6 +316,15 @@
                                 color: #fff;
                                 border-radius: 4px;
                                 text-align: center;
+                            }
+                        }
+                        @media (max-width: 360px) {
+                            .button-block {
+                                width: 40px;
+                                button {
+                                    font-size: 10px;
+                                    // margin-left: 20px;
+                                }
                             }
                         }
                     }

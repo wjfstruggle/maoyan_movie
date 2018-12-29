@@ -107,6 +107,12 @@
                 line-height: 15px;
             }
         }
+        @media (max-width: 360px) {
+            .right-content {
+                width: 180px;
+                padding: 12px 0 12px 0;
+            }
+        }
         .btn {
             .btn1,.btn2 {
                 width: 47px;

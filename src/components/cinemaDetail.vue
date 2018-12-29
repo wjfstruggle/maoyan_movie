@@ -14,6 +14,7 @@
         		</div>
               </div>
               <div class="swiper-box">
+                  <!-- 轮播 -->
                  <transition name="slide">
                       <swiper ref="mySwiper" :options="swiperOption">
                         <swiper-slide  v-for="(movies, index) in showData.movies" :key="movies.id">
@@ -26,6 +27,7 @@
                 </transition>
               </div>
           </div>
+          <!-- 电影介绍 -->
           <div class="movie-info" v-if="showData.movies">
               <div class="movie-title">
                   <span class="title">{{this.showData.movies[movieIndex].nm}}</span>
@@ -41,6 +43,7 @@
              <div v-for="(day, index) in shows" :key="day.dateShow" class="showday" @click="changeTime(index)" :class="{active:isSwitch==index}">{{day.dateShow}}</div>
           </div>
       </section>
+      <!-- 电影上映 -->
       <section class="seat-wrap">
           <div class="discount-block">
               <div class="vip-tips">
@@ -62,7 +65,7 @@
                                  <span class="tui">散场</span>
                              </div>
                          </div>
-                         <div class="info-block">
+                         <div class="info-block textOverflow1">
                              <p class="lan">{{item.lang}}{{item.tp}}</p>
                              <p class="hall">{{item.th}}</p>
                          </div>
