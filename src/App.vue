@@ -8,7 +8,7 @@
     <div class="nav_wrapper">
         <div id="nav">
           <div class="city-enter" @click="toCity">
-            <span>广州</span>
+            <span>{{cityTitle}}</span>
             <i></i>
           </div>
           <div class="router">
@@ -35,6 +35,9 @@
         computed: {
             headerTitle() {
                 return this.$store.state.headerTitle;
+            },
+            cityTitle() {
+                return this.$store.state.cityTitle;
             }
         },
         methods: {

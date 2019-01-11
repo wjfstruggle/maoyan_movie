@@ -71,7 +71,7 @@ export default {
 				this.movieId=JSON.parse(localStorage.getItem("movieId"))
 			}
       // 电影信息详情
-      this.axios.get('/maoyan/ajax/detailmovie',{
+      this.axios.get('/ajax/detailmovie',{
           params:{
               movieId:this.movieId
           }
@@ -93,6 +93,7 @@ export default {
             day_m: '',
             offset: 0, // 请求数据数量
             showDays: [],
+            cityId: '',
             day_index: 0, // 切换日期索引
         }
     },
@@ -105,7 +106,7 @@ export default {
        },
        post_move(day_m, offset) {
            //影院信息
-           this.axios.post('/maoyan/ajax/movie',qs.stringify({
+           this.axios.post('/ajax/movie',qs.stringify({
                  movieId:this.movieId ,
                  day:day_m,
                  offset:offset,
@@ -135,8 +136,8 @@ export default {
        },
        // 到底刷新
        loadMore() {
-           // this.offset += 20;
-           // this.post_move(this.day_m, this.offset);
+           this.offset += 20;
+           this.post_move(this.day_m, this.offset);
        },
        cinemaDetail(cinemaId) {
            this.$router.push({
@@ -157,20 +158,20 @@ export default {
            let nowMonth = date.getMonth() + 1; // 获取当前月
            let nowDay = date.getDate(); // 获取当前日
            let time=new Date(resentYear,resentMonth,0)
-		   let days=time.getDate()		//获取当前月的总天数
-		   let isover=false	//判断当月天数是否超了
+		   let days = time.getDate()		//获取当前月的总天数
+		   let isover = false	//判断当月天数是否超了
            // 判断电影上映的那天是否为今天
            if(resentYear == nowYear && resentMonth == nowMonth && resentDay == nowDay) {
                if (days - resentDay >= 7) {
                    for (let i = 0; i < 7; i++) {
-                       let resentTimeLine = (resentYear+'-'+resentMonth+'-'+(resentDay+i))
+                    //    let resentTimeLine = (resentYear+'-'+resentMonth+'-'+(resentDay+i))
                        if (i == 1) {
                            this.showDays[0] = "今天" +this.showDays[0];
                            this.showDays.push("明天" + resentYear+'-'+resentMonth+'-'+(resentDay+i))
                        }else if (i == 2) {
                            this.showDays.push("后天" + resentYear+'-'+resentMonth+'-'+(resentDay+i))
                        } else {
-                           var week = this.week((new Date(resentYear+'-'+resentMonth+'-'+(resentDay+i))).getDay())
+                           let week = this.week((new Date(resentYear+'-'+resentMonth+'-'+(resentDay+i))).getDay())
 						   this.showDays.push(week+resentYear+'-'+resentMonth+'-'+(resentDay+i))
                        }
                    }
@@ -187,7 +188,7 @@ export default {
 							}
 						}
 						if(i==1){
-                            let resentTimeLine1 = (resentYear+'-'+resentMonth+'-'+resentDay)
+                            // let resentTimeLine1 = (resentYear+'-'+resentMonth+'-'+resentDay)
 							this.showDays[0]="今天 "+this.showDays[0];
 							this.showDays.push("明天 "+resentYear+'-'+resentMonth+'-'+resentDay)
 						}else if(i==2){
@@ -202,19 +203,19 @@ export default {
                //电影上映的那天比今天早
 					this.showDays.length=0;
 					if(days-nowDay>=7){
-						for(var i=1;i<7;i++){
+						for(let i = 1;i<7;i++){
 							if(i==1){
 								this.showDays.push("今天 "+nowYear+"-"+nowMonth+"-"+(nowDay))
 								this.showDays.push("明天 "+nowYear+"-"+nowMonth+"-"+(nowDay+i))
 							}else if(i==2){
 								this.showDays.push("后天 "+nowYear+"-"+nowMonth+"-"+(nowDay+i))
 							}else{
-								var week=this.week((new Date(nowYear+"-"+nowMonth+"-"+(nowDay+i))).getDay())
+								let week=this.week((new Date(nowYear+"-"+nowMonth+"-"+(nowDay+i))).getDay())
 								this.showDays.push(week+nowYear+"-"+nowMonth+"-"+(nowDay+i))
 							}
 						}
 					}else{
-						for(var i=1;i<7;i++){
+						for(let i=1;i<7;i++){
 							nowDay++;
 							if(nowDay>days && isover==false){
 								isover=true;
@@ -231,22 +232,22 @@ export default {
 							}else if(i==2){
 								this.showDays.push("后天 "+nowYear+"-"+nowMonth+"-"+nowDay)
 							}else{
-								var week=this.week((new Date(nowYear+"-"+nowMonth+"-"+nowDay)).getDay())
+								let week=this.week((new Date(nowYear+"-"+nowMonth+"-"+nowDay)).getDay())
 								this.showDays.push(week+nowYear+"-"+nowMonth+"-"+nowDay)
 							}
 						}
 					}
 				} else { //电影上映的那天比今天晚
                     if(days-resentDay>=7){
-						for(var i=1;i<7;i++){
+						for(let i=1;i<7;i++){
 							if(i==1){
 								this.showDays[0]= this.showDays[0];
 							}
-							var week=this.week((new Date(resentYear+"-"+resentMonth+"-"+(resentDay+i))).getDay())
+							let week=this.week((new Date(resentYear+"-"+resentMonth+"-"+(resentDay+i))).getDay())
 							this.showDays.push(week+resentYear+"-"+resentMonth+"-"+(resentDay+i))
 						}
 					}else{
-						for(var i=1;i<7;i++){
+						for(let i=1;i<7;i++){
 							resentDay++;
 							if(resentDay>days && isover==false){
 								isover=true;
@@ -260,7 +261,7 @@ export default {
 							if(i==1){
 								this.showDays[0] = this.showDays[0];
 							}
-							var week=this.week((new Date(resentYear+"-"+resentMonth+"-"+resentDay)).getDay())
+							let week=this.week((new Date(resentYear+"-"+resentMonth+"-"+resentDay)).getDay())
 							this.showDays.push(week+resentYear+"-"+resentMonth+"-"+resentDay)
 						}
 					}
@@ -269,23 +270,23 @@ export default {
        // 处理周
        week(week) {
            switch (week) {
-               case 0:
-                    return '周日'
+                case 0:
+                    return '周日';
                     break;
                 case 1:
-                    return '周一'
+                    return '周一';
                     break;
                 case 2:
-                    return '周二'
+                    return '周二';
                     break;
                 case 3:
-                    return '周三'
+                    return '周三';
                     break;
                 case 4:
-                    return '周四'
+                    return '周四';
                     break;
                 case 5:
-                    return '周五'
+                    return '周五';
                     break;
                 case 6:
                     return '周六'
@@ -295,8 +296,8 @@ export default {
        // 时间切换,渲染其他影院信息
        changeTime(item_day, index) {
            this.day_index = index;
-           var day = item_day.split(' ')[1]
-           var time=(new Date(day)).getTime();
+           let day = item_day.split(' ')[1]
+           let time=(new Date(day)).getTime();
             this.post_move(day, 0 ,time);
        }
    },

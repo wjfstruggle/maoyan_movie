@@ -29,19 +29,16 @@
 
 <script>
 // import { getCityList } from "@/util/city.js";
+import cityList from '../../city.json'
 export default {
     created() {
-        // 城市列表
-      this.axios.get('/maoyan/dianying/cities.json')
-      .then((res) => {
-          this.getCityList(res.data.cts);
-          this.cityList = res.data.cts;
-          this.getHotCity(res.data.cts) // 热门城市
-      })
+        console.log(cityList)
+        this.getCityList(cityList.cts)
+        this.getHotCity(cityList.cts)
     },
     data() {
         return {
-            cityList: [],// 城市按字母排序
+            cityList: cityList.cts,// 城市按字母排序
             hotCity: [], // 热门城市
             site: {} // 排序后的城市
         }

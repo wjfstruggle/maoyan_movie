@@ -1,0 +1,215 @@
+#movie_detail_wrapper {
+  position: relative;
+  top: -50px;
+  z-index: 10;
+  background-color: #fff;
+}
+
+#movie_detail {
+  position: relative;
+  left: 0;
+  width: 100%;
+  height: 188px;
+}
+
+#movie_detail .movie-fliter {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+}
+
+#movie_detail .img_bg {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  -webkit-filter: blur(1.2rem);
+  filter: blur(1.2rem);
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: .55;
+}
+
+#movie_detail .movie_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 19px;
+}
+
+#movie_detail .movie_content img {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 110px;
+          flex: 0 0 110px;
+  height: 150px;
+  overflow: hidden;
+}
+
+#movie_detail .movie_content .content-wrapper {
+  color: #fff;
+  margin-left: 20px;
+}
+
+#movie_detail .movie_content .content-wrapper .musicName {
+  font-size: 20px;
+  margin-top: 2px;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+#movie_detail .movie_content .content-wrapper .musicName_engish {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: .8;
+}
+
+#movie_detail .movie_content .content-wrapper .movie_info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fc0;
+  margin-top: 11px;
+}
+
+#movie_detail .movie_content .content-wrapper .movie_info .icon_text_info, #movie_detail .movie_content .content-wrapper .movie_info .movie_dur, #movie_detail .movie_content .content-wrapper .movie_info .time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: .8;
+}
+
+#movie_detail .movie_content .content-wrapper .movie_info .icon_text_info .icon, #movie_detail .movie_content .content-wrapper .movie_info .movie_dur .icon, #movie_detail .movie_content .content-wrapper .movie_info .time .icon {
+  line-height: 14px;
+  display: inline-block;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+  border-radius: 2px;
+  margin-left: 3px;
+  width: 43px;
+  height: 14px;
+}
+
+#movie_detail .movie_content .content-wrapper .movie_info .icon_text_info .active1, #movie_detail .movie_content .content-wrapper .movie_info .movie_dur .active1, #movie_detail .movie_content .content-wrapper .movie_info .time .active1 {
+  background: url("../assets/images/movie_hot/2d_max.png") no-repeat;
+  background-size: 43px 14px;
+}
+
+#movie_detail .movie_content .content-wrapper .movie_info .icon_text_info .active2, #movie_detail .movie_content .content-wrapper .movie_info .movie_dur .active2, #movie_detail .movie_content .content-wrapper .movie_info .time .active2 {
+  background: url("../assets/images/movie_hot/3d_max.png") no-repeat;
+  background-size: 43px 14px;
+}
+
+#showDays {
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+}
+
+#showDays .timeLine {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+#showDays .timeLine::-webkit-scrollbar {
+  display: none;
+}
+
+#showDays .timeLine .showday, #showDays .timeLine .day {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  width: 115px;
+  margin-left: 5px;
+  color: #666;
+}
+
+#showDays .timeLine .showday.isActive, #showDays .timeLine .day.isActive {
+  border-bottom: 2px solid #f03d37;
+  color: #f03d37;
+}
+
+#list-wrap {
+  min-height: 602px;
+}
+
+#list-wrap li {
+  padding: 13px 15px 13px 0;
+  margin-left: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+#list-wrap li .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 23px;
+  line-height: 23px;
+  font-size: 16px;
+  color: #000;
+}
+
+#list-wrap li .name h1 {
+  line-height: 23px;
+  font-size: 16px;
+  color: #000;
+}
+
+#list-wrap li .name p {
+  font-size: 11px;
+  color: #f03d37;
+  padding-left: 8px;
+}
+
+#list-wrap li .name p span {
+  font-size: 18px;
+}
+
+#list-wrap li .address {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+#list-wrap li .address p {
+  float: left;
+  width: 270px;
+}
+
+#list-wrap li .address span {
+  display: block;
+  float: right;
+}
+
+#list-wrap li .cardPromotionTag {
+  color: #999;
+  margin: 8px 0;
+}
+
+#list-wrap li .cardPromotionTag .icon {
+  width: 15px;
+  height: 15px;
+  background: url("../assets/images/movie_hot/ka.png") no-repeat;
+  background-size: 15px 15px;
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+#list-wrap li .cardPromotionTag .lijian {
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: bottom;
+  width: 250px;
+}
+
+#list-wrap li .showTimes {
+  color: #999;
+}
+/*# sourceMappingURL=movie_detail.css.map */

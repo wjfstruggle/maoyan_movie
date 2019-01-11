@@ -8,7 +8,7 @@
                     <ul v-infinite-scroll="loadMore"
                         infinite-scroll-disabled="loading"
                         infinite-scroll-distance="10">
-                        <li v-for="(item, index) in mostExpected" :key="item.index">
+                        <li v-for="item in mostExpected" :key="item.id">
                             <div class="img">
                                 <img v-lazy="picFix(item.img)" alt="">
                                 <p class="wish">{{item.wish}}人想看</p>
@@ -24,7 +24,7 @@
                 <ul class="clearfix">
                     <li v-for="(item,index) in timeTitle" :key="item.index">
                         <p class="comingTitle">{{index}}</p>
-                        <div v-for="(coming, index) in item" :key="coming.id">
+                        <div v-for="coming in item" :key="coming.id">
                             <div class="content">
                                 <div class="img">
                                     <img v-lazy="picFix_coming(coming.img)" alt="">
@@ -56,7 +56,7 @@
     </transition>
 </template>
 <script>
-import MyButton from '@/components/myButton.vue'
+// import MyButton from '@/components/myButton.vue'
 export default {
     /**
      * [lang description]
@@ -66,7 +66,7 @@ export default {
         //
 
         let that = this;
-        this.axios.get('/maoyan/ajax/comingList',{
+        this.axios.get('/ajax/comingList',{
             params: {
                 ci: 20,
                 limt: 10,
@@ -105,7 +105,7 @@ export default {
            }
        },
        most_Expected(offset) {
-           this.axios.get('/maoyan/ajax/mostExpected',{
+           this.axios.get('/ajax/mostExpected',{
                params: {
                    ci: 20,
                    limit: 10,
@@ -165,7 +165,7 @@ export default {
            let limit = 10;
            let tosee = movieIds.splice(arrIndex, limit);
            tosee = tosee.join(',');
-           that.axios.get('maoyan/ajax/moreComingList',{
+           that.axios.get('/ajax/moreComingList',{
                params: {
                    ci: 20,
                    token: '',
@@ -191,7 +191,7 @@ export default {
        }
    },
    components: {
-       MyButton
+    //    MyButton
      }
 }
 </script>

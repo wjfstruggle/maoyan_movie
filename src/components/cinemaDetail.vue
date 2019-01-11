@@ -44,7 +44,7 @@
           </div>
       </section>
       <!-- 电影上映 -->
-      <section class="seat-wrap">
+      <section class="seat-wrap" >
           <div class="discount-block">
               <div class="vip-tips">
                 <a href="#">
@@ -76,7 +76,7 @@
                              </div>
                              <div class="vipPrice">
                                  <span class="icon">{{item.vipPriceName}}</span>
-                                 <span class="num">{{item.vipPrice-4}}</span>
+                                 <span class="num">{{(item.vipPrice-4).toFixed(1)}}</span>
                              </div>
                              <div class="extraDesc">{{item.vipPriceNameNew}}</div>
 
@@ -118,7 +118,7 @@ export default {
             this.movieId = JSON.parse(localStorage.getItem('movieId'))
         }
 
-        this.axios.get('/maoyan/ajax/cinemaDetail', {
+        this.axios.get('/ajax/cinemaDetail', {
             params: {
                 cinemaId: this.cinemaId,
                 movieId: this.movieId,

@@ -38,11 +38,10 @@ import myButton from '@/components/myButton.vue'
 export default {
   name: 'Hotshow',
   created() {
-      let flag = true;
       let that = this;
-    // http://m.maoyan.com =>  /maoyan/
+    // http://m.maoyan.com =>  /
     // 请求 --> 本地服务器(webpack 的devServer) --> 猫眼的服务器
-    this.axios.get('/maoyan/ajax/movieOnInfoList')
+    this.axios.get('/ajax/movieOnInfoList')
     .then((res) => {
         this.movieList = res.data.movieList;
         this.movieIds = res.data.movieIds;
@@ -66,7 +65,7 @@ export default {
               return wh.replace('w.h', '64.90')
           }
      },
-     movie_detail(id,index) {
+     movie_detail( id ) {
          this.$router.push({
              name: 'movie_detail',
              params: {
@@ -104,7 +103,7 @@ export default {
           let limit = 12; // 显示个数
           let tosee = that.movieIds.splice(arrindex, limit);
           tosee = tosee.join(',');
-          that.axios.get('/maoyan/ajax/moreComingList', {
+          that.axios.get('/ajax/moreComingList', {
               params: {
                   token: '',
                   movieIds: tosee
