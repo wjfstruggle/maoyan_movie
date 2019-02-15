@@ -1,7 +1,7 @@
 # maoyan_movie
 Vue-cli3.0仿猫眼电影项目
 
-[项目预览](http://struggle-wjf.gitee.io/maoyan_movie/dist/index.html#/)
+[项目预览](http://struggle-wjf.gitee.io/maoyanmovie/dist/#/)
 
 ### 图片预览
 ![1.png](http://edu.bluej.cn/public/uploads/20181229/201812291315011.png)

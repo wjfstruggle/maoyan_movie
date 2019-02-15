@@ -320,6 +320,7 @@ export default {
 }
 .fade-enter, .fade-leave-to {
     transform: translateX(-100%);
+    opacity: 0;
 }
 .loading {
     position: absolute;

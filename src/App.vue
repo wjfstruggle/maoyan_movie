@@ -12,17 +12,15 @@
             <i></i>
           </div>
           <div class="router">
-              <keep-alive>
-                  <router-link to="/">正在热映</router-link>
-              </keep-alive>
-               <keep-alive>
-                   <router-link to="/release">即将上映</router-link>
-              </keep-alive>
+            <router-link to="/">正在热映</router-link>
+            <router-link to="/release">即将上映</router-link>
           </div>
         </div>
     </div>
     <!-- 路由渲染 -->
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>    
   </div>
 </template>
 <script type="text/javascript">

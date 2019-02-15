@@ -2,8 +2,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     z-index: 100;
+    overflow: hidden;
 }
 .nav_wrapper {border: 1px solid #e6e6e6;padding-top: 50px;}
 .city-enter{
