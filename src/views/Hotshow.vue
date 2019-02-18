@@ -42,7 +42,7 @@
                 </li>
             </ul>
             <!-- loading 加载组件 -->
-            <div class="loading" v-show="!coming.length">
+            <div class="loading" v-show="coming.length">
                 <mt-spinner color="rgb(100, 100, 100)" type="fading-circle"></mt-spinner>
             </div>
         </div>

@@ -42,6 +42,11 @@ export default new Router({
         path: '/city', // 单个影片详情
         name: 'city',
         component: ()=> import('@/components/city.vue')
-    }
+    },
+    {
+      path: '/movies/:movieId', // 
+      name: 'movies',
+      component: ()=> import('@/components/movies.vue')
+  }
   ]
 })

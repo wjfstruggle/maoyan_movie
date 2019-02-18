@@ -5,8 +5,8 @@
           <div class="movie-fliter"></div>
           <div class="img_bg" v-if="detailmovie.albumImg" :style="{backgroundImage: `url(${detailmovie.albumImg})`}"></div>
           <div class="img_bg" v-else :style="{backgroundImage: `url(${picFix(detailmovie.img)})`}"></div>
-          <div class="movie_content">
-              <img :src="picFix(detailmovie.img)" alt="">
+          <div class="movie_content" @click="Tomovie(detailmovie.id)">
+              <img class="movie_content_img" :src="picFix(detailmovie.img)" alt="">
               <div class="content-wrapper">
                   <!-- <h1 class="musicName" v-if="detailmovie.musicName">{{detailmovie.musicName}}</h1> -->
                   <h1 class="musicName">{{detailmovie.nm}}</h1>
@@ -21,6 +21,9 @@
                       <p class="movie_dur">{{detailmovie.src}}/{{detailmovie.dur}}分钟</p>
                       <p class="time">{{detailmovie.pubDesc}}</p>
                   </div>
+              </div>
+              <div class="arrow-g">
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAWCAYAAAAfD8YZAAAAAXNSR0IArs4c6QAAAS5JREFUOBGVkktuwkAMhpOoJ+hhSouE2HbDgiVCNCAOVtQHnINHhbgMJ6g6/f9gR848kmDJeOzxZ3scskzEOfcKXUMLjXXZByYQhJlqMvz3PM//1E9Z7fJoEp5wXvWZoILRZQtg7xVYdhXQzuR2XoEB/NYCOSkVdKI/g441BnuBbmI7aMAE7ilgxyaboYOD4RMO9EWiTwhgJksBLtEvUNolRmGvwJG+yDNsXSB4s2aplR3M4Y80BnuGfiQ7m0Q2qP6JJvaLc/VpTKx5lPe9IfpibviMb+4lOXYXyGLRsRPgSTsSpASdW8Av+YQ3Er+NzgIuELdvZMcAZIUaBsgpCA55IZIEeV+NLSC32hskXCTAH9xFRyWkUsgSrhqAJfjpL8fch0dMMIGWMkmYEIn8Az5Wgp5LHlhmAAAAAElFTkSuQmCC" alt="">
               </div>
           </div>
       </section>
@@ -299,7 +302,16 @@ export default {
            let day = item_day.split(' ')[1]
            let time=(new Date(day)).getTime();
             this.post_move(day, 0 ,time);
-       }
+       },
+        //    跳转到电影详情
+          Tomovie(id) {
+            this.$router.push({
+                name: "movies",
+                params: {
+                    movieId: id
+                }
+            });
+        }
    },
    computed: {
    },
@@ -327,5 +339,19 @@ export default {
     left: 50%;
     bottom: -20px;
     transform: translateX(-50%);
+}
+.arrow-g {
+    position: absolute;
+    width: 10px;
+    height: 16px;
+    right: 15px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    img {
+        width: 100%;
+        display: block;
+        background: #313131;
+    }
 }
 </style>

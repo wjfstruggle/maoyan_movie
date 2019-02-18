@@ -41,7 +41,7 @@ $color_text:#f03d37;
     .movie_content {
         display: flex;
         padding: 19px;
-        img {
+        .movie_content_img {
             flex: 0 0 110px;
             height: 150px;
             overflow: hidden;
