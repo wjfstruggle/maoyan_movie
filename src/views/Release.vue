@@ -47,7 +47,7 @@
                         </div>
                     </li>
                     <!-- loading 加载组件 -->
-                    <div class="loading">
+                    <div class="loading" v-show="hasMore">
                         <mt-spinner color="rgb(100, 100, 100)" type="fading-circle"></mt-spinner>
                     </div>
                 </ul>
@@ -94,7 +94,8 @@ export default {
             title: ["想看", "预售"],
             movieIds: [],
             offset: 0,
-            timeTitle: {} // 日期分组
+            timeTitle: {}, // 日期分组
+            hasMore: true // 是否存在更多，加载的时候
         };
     },
     methods: {
@@ -195,6 +196,7 @@ export default {
                             that.timeTitle[item.comingTitle].push(item);
                         });
                     } else {
+                        this.hasMore = !this.hasMore
                         return false;
                     }
                 });

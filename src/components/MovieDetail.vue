@@ -327,10 +327,10 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/sass/movie_detail.scss';
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active{
     transition: transform 0.8s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter {
     transform: translateX(-100%);
     opacity: 0;
 }
@@ -351,7 +351,6 @@ export default {
     img {
         width: 100%;
         display: block;
-        background: #313131;
     }
 }
 </style>

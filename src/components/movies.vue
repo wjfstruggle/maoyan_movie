@@ -14,7 +14,9 @@
                   <div v-if="detailmovie.globalReleased">
                     <div v-if='detailmovie.sc'>
                       <div class='movie-score textOverflow'>
-                        <img class='movie-star' v-for="stars in detailmovie.stars" :key='stars.id' :src="picStars(stars)" alt="">
+                        <star :score="detailmovie.sc"></star>
+                        <!-- <i class='movie-star' v-for="stars in detailmovie.stars" :key='stars.id' :style="{backgroundImage: `url(${picStars(stars)})`}" alt=""></i> -->
+                        <!-- <img class='movie-star' v-for="stars in detailmovie.stars" :key='stars.id' :src="picStars(stars)" alt=""> -->
                         {{detailmovie.sc}}
                       </div>
                       <div class='score-num textOverflow'>({{detailmovie.snum}}万人评分)</div>
@@ -56,6 +58,7 @@
   </div>
 </template>
 <script>
+import Star from '@/components/star'
 export default {
   created() {
      if (this.$route.params.movieId != null) {
@@ -129,6 +132,9 @@ export default {
       localStorage.setItem('movieId', JSON.stringify(newValue))
     }
   },
+  components: {
+    Star
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -193,6 +199,7 @@ export default {
       font-weight: bold;
       display: flex;
       align-items: center;
+      margin-bottom: 10px;
       .movie-star {
         width: 18px;
         height: 18px;
