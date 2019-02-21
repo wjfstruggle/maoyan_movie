@@ -75,7 +75,7 @@ export default {
         .then(res => {
           this.detailmovie = this.dataProcess(res.data.detailMovie);
           // 修改提交
-          this.$store.commit('changeHt', this.detailmovie.nm)
+          this.$store.commit('changeHt', res.data.detailMovie.nm)
         });
   },
   data() {
