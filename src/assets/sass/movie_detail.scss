@@ -178,7 +178,18 @@ $color_text:#f03d37;
             }
         }
         .showTimes {
-            color: #999;
+            margin-top: 8px;
+            span {
+                border: 1px solid #f90;
+                color: #f90;
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+                margin-right: 6px;
+                height: 15px;
+                line-height: 15px;
+                border-radius: 2px;
+            }
         }
 }
 }

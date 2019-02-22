@@ -47,6 +47,11 @@ export default new Router({
       path: '/movies/:movieId', // 
       name: 'movies',
       component: ()=> import('@/components/movies.vue')
-  }
+    },
+    {
+      path: '/search', // 
+      name: 'search',
+      component: ()=> import('@/components/search.vue')
+    }
   ]
 })

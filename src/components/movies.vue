@@ -5,7 +5,13 @@
         <div class="img_bg" v-if="detailmovie.albumImg" :style="{backgroundImage: `url(${detailmovie.albumImg})`}"></div>
         <div class="img_bg" v-else :style="{backgroundImage: `url(${picFix(detailmovie.img)})`}"></div>
         <div class="movie_content">
-            <img class="movie_content_img" :src="picFix(detailmovie.img)" alt="">
+            <div class="movie_content_img-play">
+              <img class="movie_content_img" :src="picFix(detailmovie.img)" alt="">
+              <video class="video" width="375" height="170" v-show="ShowPlay" :src="detailmovie.videourl" controls autoplay></video>
+              <i class="" @click="playVideo">
+                <img src="../assets//images/icon/icon-play.png" alt="">
+              </i>
+            </div>
             <div class="content-wrapper">
                 <!-- <h1 class="musicName" v-if="detailmovie.musicName">{{detailmovie.musicName}}</h1> -->
                 <h1 class="musicName">{{detailmovie.nm}}</h1>
@@ -17,7 +23,7 @@
                         <star :score="detailmovie.sc"></star>
                         <!-- <i class='movie-star' v-for="stars in detailmovie.stars" :key='stars.id' :style="{backgroundImage: `url(${picStars(stars)})`}" alt=""></i> -->
                         <!-- <img class='movie-star' v-for="stars in detailmovie.stars" :key='stars.id' :src="picStars(stars)" alt=""> -->
-                        {{detailmovie.sc}}
+                        &nbsp;{{detailmovie.sc}}
                       </div>
                       <div class='score-num textOverflow'>({{detailmovie.snum}}万人评分)</div>
                     </div>
@@ -47,18 +53,37 @@
     <section class="section-movie-celebrities">
       <h2 class="mediaKu">媒体库</h2>
       <div>
-        <ul>
-          <li><video width="125" height="70" :src="detailmovie.vd" controls="controls" autoplay="autoplay">
-            <!-- <source :src="detailmovie.vd" type="video/mp4" /> -->
+        <ul infinite-scroll-disabled="loading"
+            infinite-scroll-distance="10">
+          <li><video width="125" height="70" :src="detailmovie.videourl" controls>
         </video></li>
           <li class="img-item" v-for="imgPic in detailmovie.photos" :key="imgPic.id"><img v-lazy="imgPic" alt=""></li>
         </ul>
         </div>
     </section>
+    <!-- 热门评论 -->
+    <section class="hotComments">
+      <h2 class="taolun">讨论</h2>
+      <div class="hot-wrap" v-for="comment in comments" :key="comment.id">
+        <div class="avatar">
+          <img :src="comment.avatarUrl" alt="">
+        </div>
+        <div class="hot-content">
+          <h3 class="nick">{{comment.nick}}</h3>
+          <p class="score">给这部作品打了{{comment.score}}分</p>
+          <p class="content">{{comment.content}}</p>
+          <div class="info">
+            <span class="time">{{comment.time|formatDate}}</span>
+            <span class="upcount"><i class="iconfont icon-dianzan-choose"></i>&nbsp;&nbsp;{{comment.upCount}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 <script>
 import Star from '@/components/star'
+import {formatDate} from '@/util/formatime'
 export default {
   created() {
      if (this.$route.params.movieId != null) {
@@ -77,12 +102,27 @@ export default {
           // 修改提交
           this.$store.commit('changeHt', res.data.detailMovie.nm)
         });
+        // 评论
+        this.axios.get('http://59.110.231.183:3001/comments', {
+            params: {
+              movieId: this.movieId,
+            },
+            userId: -1,
+            offset: 0,
+            limit: 15,
+            ts: 0,
+            type: 3,
+        }).then(res => {
+          this.comments = res.data.data.hotComments
+        })
   },
   data() {
       return {
           movieId: "",
           detailmovie: {},
-          toggleFag: false // 点击箭头
+          toggleFag: false, // 点击箭头
+          comments: [],
+          ShowPlay: false
       };
   },
   methods: {
@@ -125,7 +165,17 @@ export default {
   // 点击箭头函数
   arrow() {
     this.toggleFag = !this.toggleFag
+  },
+  // 点击视频播放
+  playVideo() {
+    this.ShowPlay = !this.ShowPlay
   }
+  },
+  filters: {
+    formatDate(time) {
+      var date = new Date(time);
+      return formatDate(date, 'yyyy-MM-dd hh:mm');
+    }
   },
   watch: {
     movieId(newValue) {
@@ -155,6 +205,7 @@ export default {
 .movie-wrapper {
   padding: 15px;
   box-sizing: border-box;
+  height: 200px;
   overflow: hidden;
   height: 1;
   filter: blur(0);
@@ -162,23 +213,44 @@ export default {
 }
 .movie-fliter {
     @include bg;
-    background-color: #40454d;
-    opacity: .55;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
 }
 .img_bg {
-    z-index: 0;
+    z-index: -1;
     filter: blur(40px);
     -webkit-filter: blur(40px);
-    background-size: cover;
     background-image: gray;
     background-repeat: no-repeat;
-    background-position-y: 40%;
     @include bg;
+    overflow: hidden;
+    height: 100%;
 }
 .movie_content {
   z-index: 1;
   position: relative;
   display: flex;
+    .video {
+    position: absolute;
+    top: 0px;
+    left: -18px;
+  }
+  .movie_content_img-play {
+    position: relative;
+    i {
+      position: absolute;
+      bottom: 8px;
+      right: 4px;
+      width: 35px;
+      height: 35px;
+      display: block;
+      img {
+        width: 100%;
+      }
+    }
+  }
   .movie_content_img {
     flex: 0 0 110px;
   }
@@ -267,6 +339,7 @@ export default {
       text-align: left;
       height: 50px;
       overflow: hidden;
+      margin-top: 5px;
     }
     .arrow-active {
       transform:rotate(180deg);
@@ -277,6 +350,7 @@ export default {
       margin: 0 auto;
       width: 16px;
       height: 16px;
+      padding: 5px;
       transition: all 0.8s ease;
       img {
         width: 100%;
@@ -311,6 +385,61 @@ export default {
       img {
         width: 100%;
         height: 100%;
+      }
+    }
+  }
+}
+.hotComments {
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5;
+  margin: 10px 0;
+  padding: 15px;
+  overflow: hidden;
+  .taolun {
+    margin: 0;
+    color: #666;
+    font-size:14px;
+    padding: 10px 0;
+  }
+  .hot-wrap {
+    display: -webkit-box;
+    justify-content: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #e5e5e5;
+    .avatar {
+      width: 34px;
+      height: 34px;      
+      img {
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+    .hot-content {
+      margin-right: 10px;
+      margin-left: 10px;
+      .nick {
+        color: #333;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      .score {
+        color: #999;
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .content {
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: justify;
+        word-wrap: break-word;
+        width: 300px;
+      }
+      .info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        color: #999;
+        font-size: 12px;
       }
     }
   }

@@ -15,6 +15,7 @@
             <router-link to="/">正在热映</router-link>
             <router-link to="/release">即将上映</router-link>
           </div>
+          <i class="iconfont icon-large" @click="toSearch"></i>
         </div>
     </div>
     <!-- 路由渲染 -->
@@ -43,6 +44,11 @@
             this.$router.push({
                 path: '/city',
                 name: 'city'
+            })
+          },
+          toSearch() {
+            this.$router.push({
+              path: 'search'
             })
           }
         },

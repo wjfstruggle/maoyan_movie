@@ -1,10 +1,10 @@
-# maoyan_movie
-Vue-cli3.0仿猫眼电影项目
+# 飞猪电影
+Vue-cli3.0飞猪电影项目
 
 [项目预览](http://struggle-wjf.gitee.io/feizhumovie/dist/index.html#/)
 
 ### 图片预览
-![1.png](http://edu.bluej.cn/public/uploads/20181229/201812291315011.png)
+![1.png](http://edu.bluej.cn/public/uploads/1.png)
 
 ![3.png](http://edu.bluej.cn/public/uploads/20181229/201812291315013.png)
 
