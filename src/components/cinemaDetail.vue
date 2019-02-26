@@ -146,6 +146,7 @@ export default {
                 })
             })
             // 修改提交
+            this.$forceUpdate(); // 迫使 Vue 实例重新渲染。
             this.$store.commit('changeHt', this.cinemaData.nm)
         })
     },

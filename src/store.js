@@ -6,8 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     // 状态，也就是数据
     state: {
-        headerTitle:"狗眼电影",
-        cityTitle: '广州'
+        headerTitle:"飞猪电影",
+        cityTitle: '广州',
+        cityId: 20
      },
      // 方法 类比vue的methods  同步的方法
      mutations: {
@@ -16,7 +17,8 @@ export default new Vuex.Store({
              state.headerTitle = payload;
          },
          changeCity(state, payload) {
-             state.cityTitle = payload;
+             state.cityTitle = payload.nm;
+             state.cityId = payload.id;
          }
      },
      // 用于异步的方法

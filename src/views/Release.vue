@@ -63,13 +63,12 @@ export default {
      * @type {String}
      */
     created() {
-        //
-
         let that = this;
+        this.ciId = this.$store.state.cityId;
         this.axios
             .get("/ajax/comingList", {
                 params: {
-                    ci: 20,
+                    ci: this.ciId, // 城市id
                     limt: 10,
                     token: ""
                 }
@@ -92,6 +91,7 @@ export default {
             mostExpected: [],
             coming: [],
             title: ["想看", "预售"],
+            ciId: "",
             movieIds: [],
             offset: 0,
             timeTitle: {}, // 日期分组
@@ -113,7 +113,7 @@ export default {
             this.axios
                 .get("/ajax/mostExpected", {
                     params: {
-                        ci: 20,
+                        ci: this.ciId,
                         limit: 10,
                         offset: offset, // 请求数量
                         token: ""
@@ -178,7 +178,7 @@ export default {
             that.axios
                 .get("/ajax/moreComingList", {
                     params: {
-                        ci: 20,
+                        ci: this.ciId,
                         token: "",
                         limit: 10,
                         movieIds: tosee
@@ -186,8 +186,6 @@ export default {
                 })
                 .then(res => {
                     if (res.data.coming.length !== 0) {
-                        console.log(res.data.coming);
-                        // that.coming = that.coming.concat(res.data.coming)
                         res.data.coming.forEach(item => {
                             if (!that.timeTitle[item.comingTitle]) {
                                 that.timeTitle[item.comingTitle] = [];
@@ -196,7 +194,7 @@ export default {
                             that.timeTitle[item.comingTitle].push(item);
                         });
                     } else {
-                        this.hasMore = !this.hasMore
+                        this.hasMore = !this.hasMore;
                         return false;
                     }
                 });
@@ -212,11 +210,17 @@ export default {
         },
         Tomovie(id) {
             this.$router.push({
-                name: 'movies',
+                name: "movies",
                 params: {
                     movieId: id
                 }
-            })
+            });
+        },
+    },
+    computed: {
+        changeCity() {
+            //数据依赖更新是，计算属性重新触发更新
+            return this.$store.state.cityId;
         }
     },
     components: {

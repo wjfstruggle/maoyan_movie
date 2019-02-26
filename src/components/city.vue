@@ -1,79 +1,136 @@
-<template lang="html">
-  <div class="city">
-      <section class="city-title">
-          <!-- 定位城市 -->
-      </section>
-      <!-- 城市列表 -->
-      <section class="city-list">
-          <!-- <ul>
-              <li v-for="(item, index) in zimu" :key="index">
-                  <p>{{index}}</p>
-                  <div class="" v-for="(item, index) in item" :key="index">
-                      <p>{{item.nm}}</p>
-                  </div>
-              </li>
-          </ul> -->
-          <mt-index-list>
-              <!-- 热门城市列表 -->
-              <mt-index-section index="热门">
-                <mt-cell v-for="(item_list, index) in hotCity" :key="index" :title="item_list.nm"></mt-cell>
-              </mt-index-section>
-              <!-- 字母排序城市列表 -->
-              <mt-index-section v-for="(item, index) in site" :key="index" :index="index.toUpperCase()">
-                <mt-cell v-for="(item_list, index) in item" :key="index" :title="item_list.nm"></mt-cell>
-              </mt-index-section>
-        </mt-index-list>
-      </section>
-  </div>
+<template>
+    <div class="citylist">
+        <div id="crm">
+            <p>热门城市</p>
+            <div class="chot">
+                <p v-for="ho in hotcity" :key="ho.id" @click="handlecity(ho.id,ho.nm)">{{ho.nm}}</p>
+            </div>
+        </div>
+
+        <div class="en" v-for="i in en" :key="i.id">
+            <p :id="i" style="height: 1px;"></p>
+            <p>{{handleen(i)}}</p>
+            <div class="zh" v-for="ci in city.cts" v-if="handlezh(ci.py,i)" :key="ci.id">
+                <p @click="handlecity(ci.id,ci.nm)">{{ci.nm}}</p>
+            </div>
+        </div>
+        <div class="ciright" @touchstart.stop.prevent @touchmove.stop.prevent>
+            <p @touchend="scrollTo('crm')">#</p>
+            <p v-for="it in en" @touchend="scrollTo(it)" :key="it.id">{{handleen(it)}}</p>
+        </div>
+    </div>
 </template>
 
 <script>
-// import { getCityList } from "@/util/city.js";
-import cityList from '../../city.json'
+import citylist from "../../city.json";
 export default {
+    name: "city",
     created() {
-        console.log(cityList)
-        this.getCityList(cityList.cts)
-        this.getHotCity(cityList.cts)
+        //	console.log(citylist.cts)
+        this.city = citylist;
+
+        for (let m = 0; m < 9; m++) {
+            this.hotcity.push(citylist.cts[m]);
+        }
+        for (let i = 0; i < citylist.cts.length; i++) {
+            let bFlag = true;
+            if (this.en.length == 0) {
+                this.en.push(citylist.cts[i].py.substring(0, 1));
+            }
+            for (let j = 0; j < this.en.length; j++) {
+                if (citylist.cts[i].py.substring(0, 1) == this.en[j]) {
+                    bFlag = false;
+                }
+            }
+            if (bFlag) {
+                this.en.push(citylist.cts[i].py.substring(0, 1));
+            }
+        }
+        this.en = this.en.sort();
+    },
+    computed: {
+        cityTitle() {
+            //数据依赖更新是，计算属性重新触发更新
+            return this.$store.state.cityId;
+        }
     },
     data() {
         return {
-            cityList: cityList.cts,// 城市按字母排序
-            hotCity: [], // 热门城市
-            site: {} // 排序后的城市
-        }
+            city: "",
+            en: [],
+            hotcity: []
+        };
     },
     methods: {
-      getCityList(list) {
-		const set = new Set();
-		for(let item of list){  //循环拿过来的每一条数据
-			//console.log(item)
-			set.add(item.py.substr(0, 1)); //截取字符串的第一个.substr(0, 1)
-		}
-		const arr = Array.from(set).sort(); //转数组方法,Set已经不是一个数组了,排序
-		//console.log(arr);
-		let site = {};  //定义一个空的对象保存处理好的数据
-		for(let a of arr){  //循环找出键和数据,生成我们要的数据
-		    this.site[a] = list.filter(item =>item.py.substr(0, 1) === a); //判断这个数组的pinyin的第一个字符
-		}
-        this.$forceUpdate()// 迫使 Vue 实例重新渲染。
-		return this.site;
+        handleen(i) {
+            return i.toUpperCase();
+        },
+        handlezh(k, j) {
+            return k.substring(0, 1) == j;
+        },
+        handlecity(id, nm) {
+            this.$store.commit("changeCity", { id: id, nm: nm });
+            this.$router.push({ path: "/" });
+        },
+        scrollTo(id) {
+            var id = document.getElementById(id);
+            window.scrollTo(0, id.offsetTop - 40);
+        }
     },
-    // 热门城市
-    getHotCity(list) {
-        list.forEach((item,index)=>{
-           if(index<12){ // 取前十个热门城市
-               this.hotCity.push(item)
-           }
-       })
-    }
-    }
-}
+    components: {}
+};
 </script>
 
-<style lang="scss" scoped>
-@import '@/assets/sass/city.scss'; // city样式
-.mint-cell-text {
-    font-size: 16px;
+<style scoped lang="scss">
+.citylist {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	z-index: 1000;
+	background-color: #fff;
+	right: 0;
+	bottom: 0;
+    #crm,
+    .en {
+        background-color: #d8d8d8;
+        p {
+            line-height: 30px;
+            margin-left: 15px;
+        }
+    }
+    .chot {
+        background-color: #f5f5f5;
+        padding: 10px 0;
+        p {
+            text-align: center;
+            display: inline-block;
+            background-color: white;
+            width: 27%;
+            margin: 5px 0;
+        }
+    }
+    .zh {
+        background-color: #f5f5f5;
+        p {
+            margin-left: 15px;
+            line-height: 44px;
+            width: 90%;
+            border-bottom: 1px solid #c8c7cc;
+        }
+    }
+    .ciright {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        p {
+            margin-top: 5px;
+            width: 25px;
+            text-align: center;
+        }
+    }
+    a {
+        color: black;
+    }
 }
 </style>
