@@ -20,10 +20,7 @@
                   <div v-if="detailmovie.globalReleased">
                     <div v-if='detailmovie.sc'>
                       <div class='movie-score textOverflow'>
-                        <star :score="detailmovie.sc"></star>
-                        <!-- <i class='movie-star' v-for="stars in detailmovie.stars" :key='stars.id' :style="{backgroundImage: `url(${picStars(stars)})`}" alt=""></i> -->
-                        <!-- <img class='movie-star' v-for="stars in detailmovie.stars" :key='stars.id' :src="picStars(stars)" alt=""> -->
-                        &nbsp;{{detailmovie.sc}}
+                        <star :score="detailmovie.sc"></star>&nbsp;{{detailmovie.sc}}
                       </div>
                       <div class='score-num textOverflow'>({{detailmovie.snum}}万人评分)</div>
                     </div>
@@ -109,7 +106,7 @@ export default {
             },
             userId: -1,
             offset: 0,
-            limit: 15,
+            limit: 10,
             ts: 0,
             type: 3,
         }).then(res => {

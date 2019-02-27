@@ -464,6 +464,8 @@ export default {
             let day = item_day.split(" ")[1];
             this.movie = []
             this.post_move(day, 0, this.ciId);
+            console.log(item_day,day,index);
+            
         },
         //    跳转到电影详情
         Tomovie(id) {

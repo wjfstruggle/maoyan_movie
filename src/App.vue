@@ -19,9 +19,7 @@
         </div>
     </div>
     <!-- 路由渲染 -->
-    <keep-alive>
-      <router-view/>
-    </keep-alive>    
+    <router-view/>
   </div>
 </template>
 <script type="text/javascript">

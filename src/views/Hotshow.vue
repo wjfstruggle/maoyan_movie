@@ -68,7 +68,6 @@ export default {
                 }, 500)
             );
         });
-        this.$forceUpdate(); // 迫使 Vue 实例重新渲染。
         this.$store.commit("changeHt", "飞猪电影");
     },
     data() {
@@ -139,6 +138,7 @@ export default {
                         return false;
                     }
                 });
+            this.$forceUpdate(); // 迫使 Vue 实例重新渲染。
         }
     },
     components: {
