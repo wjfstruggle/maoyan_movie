@@ -185,3 +185,8 @@ App.vue: 根组件  任何一个项目，都需要一个根实例，根实例需
 7. getters 是可以从 state 中派生的新状态，state 与 getters 的关系，类似于组件中的 data 与 computed 的关系
 
 8. module 划分模块，为了多人协作开发，结构分离，可以将 store 拆分为各个模块
+
+## it资源
+https://www.yuque.com/itjiaochengxuexi/mxcpla/eoilbc
+
+如有任何疑问，请添加qq 2399012862
